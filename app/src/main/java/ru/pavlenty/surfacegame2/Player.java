@@ -9,18 +9,17 @@ public class Player {
     private Bitmap bitmap;
     private int x;
     private int y;
-    private int speed = 0;
+    private int speed;
     private boolean boosting;
-    private final int GRAVITY = -10;
+    private final int GRAVITY = -8;
     private int maxY;
     private int minY;
 
     private final int MIN_SPEED = 1;
-    private final int MAX_SPEED = 20;
+    private final int MAX_SPEED = 15;
 
     private Rect detectCollision;
-
-    public Player(Context context, int screenX, int screenY) {
+    protected Player(Context context, int screenX, int screenY) {
         x = 75;
         y = 50;
         speed = 1;
@@ -28,6 +27,7 @@ public class Player {
         maxY = screenY - bitmap.getHeight();
         minY = 0;
         boosting = false;
+
 
 
         detectCollision =  new Rect(x, y, bitmap.getWidth(), bitmap.getHeight());
@@ -44,6 +44,7 @@ public class Player {
     public void update() {
         if (boosting) {
             speed += 2;
+
         } else {
             speed -= 5;
         }
@@ -51,11 +52,10 @@ public class Player {
         if (speed > MAX_SPEED) {
             speed = MAX_SPEED;
         }
-
+//hello world
         if (speed < MIN_SPEED) {
             speed = MIN_SPEED;
         }
-
         y -= speed + GRAVITY;
 
         if (y < minY) {
